@@ -3,13 +3,13 @@ pipeline {
   stages {
     stage('Install') {
       steps {
-        sh 'npm install'
+        sh 'sudo npm install'
       }
     }
 
     stage('Build') {
       steps {
-        sh 'cd /var/www/covid.atlc.dev && npm run build'
+        sh 'cd /var/www/covid.atlc.dev && sudo npm run build'
       }
     }
 
