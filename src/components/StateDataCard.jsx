@@ -14,9 +14,26 @@ const StateDataCard = ({ population, metrics, actuals, url, state, isPreview }) 
             <div className="card-header bg-dark text-center text-white text-capitalize">{name}</div>
             <div className="card-body">
                 <ul className="list-unstyled">
+                    {!isPreview && (
+                        <li>
+                            <h4>Base Metrics:</h4>
+                        </li>
+                    )}
                     <li>Population: {COMMAS(population)}</li>
                     <li>Total Cases: {COMMAS(actuals.cases)}</li>
+                    {!isPreview && <li>Cases per 1M: {COMMAS(Math.floor((actuals.cases / (population / 1e6)).toFixed(2)))}</li>}
+                    {!isPreview && <li>Person per cases: 1 in {Math.round(1 / (actuals.cases / population))}</li>}
                     <li>Total Deaths: {COMMAS(actuals.deaths)}</li>
+                    {!isPreview && <li>Deaths per 1M: {COMMAS(Math.floor((actuals.deaths / (population / 1e6)).toFixed(2)))}</li>}
+                    {!isPreview && <li>Person per deaths: 1 in {Math.round(1 / (actuals.deaths / population))}</li>}
+                    {!isPreview && (
+                        <>
+                            <hr />
+                            <li>
+                                <h4>ICU:</h4>
+                            </li>
+                        </>
+                    )}
                     <li>
                         ICU Availability:{" "}
                         <span
@@ -40,6 +57,14 @@ const StateDataCard = ({ population, metrics, actuals, url, state, isPreview }) 
                             <li>ICU Current Usage: {COMMAS(actuals.icuBeds.currentUsageTotal)}</li>
                             <li>ICU Non-COVID Beds: {COMMAS(metrics.icuHeadroomDetails.currentIcuNonCovid)}</li>
                             <li>ICU COVID-Positive: {COMMAS(metrics.icuHeadroomDetails.currentIcuCovid)}</li>
+                        </>
+                    )}
+                    {!isPreview && (
+                        <>
+                            <hr />
+                            <li>
+                                <h4>Vaccination:</h4>
+                            </li>
                         </>
                     )}
                     <li>Vaccinations Completed Percent: {PERCENT(metrics.vaccinationsCompletedRatio)}</li>

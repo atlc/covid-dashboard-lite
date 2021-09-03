@@ -5,7 +5,7 @@ const Navbar = () => {
     return (
         <div className="bg-dark mb-3">
             <NavLink activeClassName="btn-light text-dark" className="btn btn-outline-light m-2" to="/" exact>
-                Home
+                Overview
             </NavLink>
             <NavLink activeClassName="btn-light text-dark" className="btn btn-outline-light m-2" to="/risk-levels" exact>
                 Risk Levels
