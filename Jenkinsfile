@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Install') {
       steps {
-        sh 'cd /var/www/covid.atlc.dev && git pull && npm install'
+        sh 'npm install'
       }
     }
 
