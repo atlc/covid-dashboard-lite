@@ -1,6 +1,8 @@
 import React from "react";
 
 const About = () => {
+    document.title = "About COVID Dashboard-Lite";
+
     return (
         <div className="container mb-5">
             <div className="row justify-content-center text-center">
