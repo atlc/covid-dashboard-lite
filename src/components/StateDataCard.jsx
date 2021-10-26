@@ -3,15 +3,15 @@ import { useHistory } from "react-router";
 
 const StateDataCard = ({ population, metrics, actuals, url, state, isPreview }) => {
     const { push, goBack } = useHistory();
-    const COMMAS = str => str.toLocaleString();
-    const PERCENT = num => (num * 100).toFixed(1) + "%";
+    const COMMAS = str => (str ? str.toLocaleString() : "Data Not Currently Available");
+    const PERCENT = num => (num ? (num * 100).toFixed(1) + "%" : "Data Not Currently Available");
 
     const name = url.split("-")[0].replace("https://covidactnow.org/us/", "").split("_").join(" ");
     const icu_cap = 1 - metrics.icuCapacityRatio;
 
     return (
-        <div onClick={() => isPreview && push("/state-data/" + state)} className="col-11 col-md-5 card shadow-lg m-2">
-            <div className="card-header bg-dark text-center text-white text-capitalize">{name}</div>
+        <div onClick={() => isPreview && push("/state-data/" + state)} className="col-11 col-md-5 bg-light card shadow-lg m-3">
+            <div className="card-header rounded-3 bg-dark text-center text-white display-6 text-capitalize">{name}</div>
             <div className="card-body">
                 <ul className="list-unstyled">
                     {!isPreview && (
@@ -20,12 +20,12 @@ const StateDataCard = ({ population, metrics, actuals, url, state, isPreview }) 
                         </li>
                     )}
                     <li>Population: {COMMAS(population)}</li>
-                    <li>Total Cases: {COMMAS(actuals.cases)}</li>
-                    {!isPreview && <li>Cases per 1M: {COMMAS(Math.floor((actuals.cases / (population / 1e6)).toFixed(2)))}</li>}
-                    {!isPreview && <li>Person per cases: 1 in {Math.round(1 / (actuals.cases / population))}</li>}
-                    <li>Total Deaths: {COMMAS(actuals.deaths)}</li>
-                    {!isPreview && <li>Deaths per 1M: {COMMAS(Math.floor((actuals.deaths / (population / 1e6)).toFixed(2)))}</li>}
-                    {!isPreview && <li>Person per deaths: 1 in {Math.round(1 / (actuals.deaths / population))}</li>}
+                    <li>Total Cases: {COMMAS(actuals?.cases)}</li>
+                    {!isPreview && <li>Cases per 1M: {COMMAS(Math.floor((actuals?.cases / (population / 1e6)).toFixed(2)))}</li>}
+                    {!isPreview && <li>Person per cases: 1 in {Math.round(1 / (actuals?.cases / population))}</li>}
+                    <li>Total Deaths: {COMMAS(actuals?.deaths)}</li>
+                    {!isPreview && <li>Deaths per 1M: {COMMAS(Math.floor((actuals?.deaths / (population / 1e6)).toFixed(2)))}</li>}
+                    {!isPreview && <li>Person per deaths: 1 in {Math.round(1 / (actuals?.deaths / population))}</li>}
                     {!isPreview && (
                         <>
                             <hr />
@@ -53,10 +53,10 @@ const StateDataCard = ({ population, metrics, actuals, url, state, isPreview }) 
                     </li>
                     {!isPreview && (
                         <>
-                            <li>ICU Capacity: {COMMAS(actuals.icuBeds.capacity)}</li>
-                            <li>ICU Current Usage: {COMMAS(actuals.icuBeds.currentUsageTotal)}</li>
-                            <li>ICU Non-COVID Beds: {COMMAS(metrics.icuHeadroomDetails.currentIcuNonCovid)}</li>
-                            <li>ICU COVID-Positive: {COMMAS(metrics.icuHeadroomDetails.currentIcuCovid)}</li>
+                            <li>ICU Capacity: {COMMAS(actuals?.icuBeds?.capacity)}</li>
+                            <li>ICU Current Usage: {COMMAS(actuals?.icuBeds?.currentUsageTotal)}</li>
+                            <li>ICU Non-COVID Beds: {COMMAS(metrics?.icuHeadroomDetails?.currentIcuNonCovid)}</li>
+                            <li>ICU COVID-Positive: {COMMAS(metrics?.icuHeadroomDetails?.currentIcuCovid)}</li>
                         </>
                     )}
                     {!isPreview && (

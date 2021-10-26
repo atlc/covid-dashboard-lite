@@ -16,7 +16,8 @@ const State = () => {
 
     useEffect(() => {
         document.title = state + " Data";
-        fetch(`https://api.covidactnow.org/v2/state/${state}${envars.prefix}${envars.key}`)
+        const state_endpoint = `https://api.covidactnow.org/v2/state/${state}${envars.prefix}${envars.key}`;
+        fetch(state_endpoint)
             .then(res => res.json())
             .then(data => {
                 setLoaded(true);
@@ -27,7 +28,9 @@ const State = () => {
     return (
         <div>
             <div className="container">
-                <div className="row justify-content-center">{!loaded ? <LoaderSkeletonCard lines={20} /> : data && <StateDataCard {...data} />}</div>
+                <div className="row justify-content-center">
+                    {!loaded ? <LoaderSkeletonCard lines={20} /> : data && <StateDataCard {...data} />}
+                </div>
             </div>
         </div>
     );
