@@ -21,6 +21,8 @@ const StateDataCard = ({ population, metrics, actuals, url, state, isPreview }) 
                     )}
                     <li>Population: {COMMAS(population)}</li>
                     <li>Total Cases: {COMMAS(actuals?.cases)}</li>
+                    {isPreview && <li>Deaths per capita: 1 in {Math.round(1 / (actuals?.deaths / population))}</li>}
+
                     {!isPreview && <li>Cases per 1M: {COMMAS(Math.floor((actuals?.cases / (population / 1e6)).toFixed(2)))}</li>}
                     {!isPreview && <li>Person per cases: 1 in {Math.round(1 / (actuals?.cases / population))}</li>}
                     <li>Total Deaths: {COMMAS(actuals?.deaths)}</li>
