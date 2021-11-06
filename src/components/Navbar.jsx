@@ -7,9 +7,6 @@ const Navbar = () => {
             <NavLink activeClassName="btn-light text-dark" className="btn btn-outline-light m-2" to="/" exact>
                 Overview
             </NavLink>
-            <NavLink activeClassName="btn-light text-dark" className="btn btn-outline-light m-2" to="/risk-levels" exact>
-                Risk Levels
-            </NavLink>
             <NavLink activeClassName="btn-light text-dark" className="btn btn-outline-light m-2" to="/about" exact>
                 About
             </NavLink>
