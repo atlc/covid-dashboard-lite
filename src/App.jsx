@@ -1,7 +1,7 @@
 import { HashRouter, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./views/Home";
-import Risks from "./views/Risks";
+// import Risks from "./views/Risks";
 import StateDetails from "./views/StateDetails";
 import About from "./views/About";
 
