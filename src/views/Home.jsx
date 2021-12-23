@@ -145,7 +145,10 @@ const Home = () => {
                                 <li>Population: {COMMAS(totals.population)}</li>
                                 <li>Total Deaths: {COMMAS(totals.deaths)}</li>
                                 <li>People who have died from COVID: 1 in {Math.round(1 / (totals.deaths / totals.population))}</li>
-                                <li>People with completed vaccine series: {PERCENT(totals.completed / totals.population)}</li>
+                                <li>
+                                    People with completed 1-2 dose vaccine series (non-boosters):{" "}
+                                    {PERCENT(totals.completed / totals.population)}
+                                </li>
                             </ul>
                         </div>
                     </div>

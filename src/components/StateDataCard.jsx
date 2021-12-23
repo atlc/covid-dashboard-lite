@@ -69,10 +69,16 @@ const StateDataCard = ({ population, metrics, actuals, url, state, isPreview }) 
                             </li>
                         </>
                     )}
-                    <li>Vaccinations Completed Percent: {PERCENT(metrics.vaccinationsCompletedRatio)}</li>
+                    <li>
+                        Vaccinations Completed Percent (1 or 2 part initial series; boosters excluded):{" "}
+                        {PERCENT(metrics.vaccinationsCompletedRatio)}
+                    </li>
                     {!isPreview && (
                         <>
-                            <li>Vaccinations Completed: {COMMAS(actuals.vaccinationsCompleted)}</li>
+                            <li>
+                                Vaccinations Completed (1 or 2 part initial series; boosters excluded):{" "}
+                                {COMMAS(actuals.vaccinationsCompleted)}
+                            </li>
                             <li>Vaccinations Initiated Percent: {PERCENT(metrics.vaccinationsInitiatedRatio)}</li>
                             <li>Vaccinations Initiated: {COMMAS(actuals.vaccinationsInitiated)}</li>
                         </>
