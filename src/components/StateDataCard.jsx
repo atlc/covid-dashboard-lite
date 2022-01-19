@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router";
 
-const StateDataCard = ({ population, metrics, actuals, url, state, isPreview }) => {
+const StateDataCard = ({ population, metrics, lastUpdatedDate, actuals, url, state, isPreview }) => {
     const { push, goBack } = useHistory();
     const COMMAS = str => (str ? str.toLocaleString() : "Data Not Currently Available");
     const PERCENT = num => (num ? (num * 100).toFixed(1) + "%" : "Data Not Currently Available");
@@ -25,6 +25,7 @@ const StateDataCard = ({ population, metrics, actuals, url, state, isPreview }) 
 
                     {!isPreview && <li>Cases per 1M: {COMMAS(Math.floor((actuals?.cases / (population / 1e6)).toFixed(2)))}</li>}
                     {!isPreview && <li>Person per cases: 1 in {Math.round(1 / (actuals?.cases / population))}</li>}
+                    {!isPreview && <li>Clinical test positivity rate: {PERCENT(metrics?.testPositivityRatio)}</li>}
                     <li>Total Deaths: {COMMAS(actuals?.deaths)}</li>
                     {!isPreview && <li>Deaths per 1M: {COMMAS(Math.floor((actuals?.deaths / (population / 1e6)).toFixed(2)))}</li>}
                     {!isPreview && <li>Person per deaths: 1 in {Math.round(1 / (actuals?.deaths / population))}</li>}
@@ -97,6 +98,7 @@ const StateDataCard = ({ population, metrics, actuals, url, state, isPreview }) 
                 </ul>
                 {isPreview && <hr />}
                 {isPreview && <p className="text-muted">Click anywhere to see my full details</p>}
+                <p className="text-muted">Data last sourced on: {lastUpdatedDate}</p>
             </div>
         </div>
     );
