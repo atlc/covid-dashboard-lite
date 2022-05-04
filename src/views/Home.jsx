@@ -114,6 +114,7 @@ const Home = () => {
         <div className="container">
             <div className="row justify-content-center">
                 <div className="bg-dark col-11 text-light rounded-3 p-2 mx-1">
+                    <h1>Hello from my deployment demo!</h1>
                     <h4 onClick={() => setShowSortables(!showSortables)} className="display-4 mx-2 text-center">
                         {showSortables ? (
                             "Sort by:"
@@ -145,10 +146,7 @@ const Home = () => {
                                 <li>Population: {COMMAS(totals.population)}</li>
                                 <li>Total Deaths: {COMMAS(totals.deaths)}</li>
                                 <li>People who have died from COVID: 1 in {Math.round(1 / (totals.deaths / totals.population))}</li>
-                                <li>
-                                    People with completed 1-2 dose vaccine series (non-boosters):{" "}
-                                    {PERCENT(totals.completed / totals.population)}
-                                </li>
+                                <li>People with completed 1-2 dose vaccine series (non-boosters): {PERCENT(totals.completed / totals.population)}</li>
                             </ul>
                         </div>
                     </div>
