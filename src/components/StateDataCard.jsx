@@ -1,8 +1,8 @@
 import React from "react";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const StateDataCard = ({ population, metrics, lastUpdatedDate, actuals, url, state, isPreview }) => {
-    const { push, goBack } = useHistory();
+    const nav = useNavigate();
     const COMMAS = str => (str ? str.toLocaleString() : "Data Not Currently Available");
     const PERCENT = num => (num ? (num * 100).toFixed(1) + "%" : "Data Not Currently Available");
 
@@ -10,7 +10,7 @@ const StateDataCard = ({ population, metrics, lastUpdatedDate, actuals, url, sta
     const icu_cap = 1 - metrics.icuCapacityRatio;
 
     return (
-        <div onClick={() => isPreview && push("/state-data/" + state)} className="col-11 col-md-5 bg-light card shadow-lg m-3">
+        <div onClick={() => isPreview && nav("/state-data/" + state)} className="col-11 col-md-5 bg-light card shadow-lg m-3">
             <div className="card-header rounded-3 bg-dark text-center text-white display-6 text-capitalize">{name}</div>
             <div className="card-body">
                 <ul className="list-unstyled">
@@ -70,16 +70,10 @@ const StateDataCard = ({ population, metrics, lastUpdatedDate, actuals, url, sta
                             </li>
                         </>
                     )}
-                    <li>
-                        Vaccinations Completed Percent (1 or 2 part initial series; boosters excluded):{" "}
-                        {PERCENT(metrics.vaccinationsCompletedRatio)}
-                    </li>
+                    <li>Vaccinations Completed Percent (1 or 2 part initial series; boosters excluded): {PERCENT(metrics.vaccinationsCompletedRatio)}</li>
                     {!isPreview && (
                         <>
-                            <li>
-                                Vaccinations Completed (1 or 2 part initial series; boosters excluded):{" "}
-                                {COMMAS(actuals.vaccinationsCompleted)}
-                            </li>
+                            <li>Vaccinations Completed (1 or 2 part initial series; boosters excluded): {COMMAS(actuals.vaccinationsCompleted)}</li>
                             <li>Vaccinations Initiated Percent: {PERCENT(metrics.vaccinationsInitiatedRatio)}</li>
                             <li>Vaccinations Initiated: {COMMAS(actuals.vaccinationsInitiated)}</li>
                         </>
@@ -90,7 +84,7 @@ const StateDataCard = ({ population, metrics, lastUpdatedDate, actuals, url, sta
                             <div>
                                 <a href={url}>See charts and in-depth details</a>
                             </div>
-                            <div onClick={goBack} className=" mt-2 btn btn-outline-dark">
+                            <div onClick={() => nav(-1)} className=" mt-2 btn btn-outline-dark">
                                 Go back
                             </div>
                         </div>

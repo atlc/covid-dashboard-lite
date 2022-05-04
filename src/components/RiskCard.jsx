@@ -1,7 +1,7 @@
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const RiskCard = ({ riskLevels, state }) => {
-    const { push } = useHistory();
+    const nav = useNavigate();
     const { overall, testPositivityRatio, caseDensity, infectionRate, icuCapacityRatio } = riskLevels;
 
     const severity = grade => {
@@ -22,7 +22,7 @@ const RiskCard = ({ riskLevels, state }) => {
     };
 
     return (
-        <div onClick={() => push(`/state-data/${state}`)} className="col-11 col-md-3 card shadow m-2">
+        <div onClick={() => nav(`/state-data/${state}`)} className="col-11 col-md-3 card shadow m-2">
             <div className="card-header bg-dark text-center text-white">{state}</div>
             <div className="card-body">
                 <ul className="list-unstyled">

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import LoaderSkeletonCard from "../components/LoaderSkeletonCard";
 import StateDataCard from "../components/StateDataCard";
 
@@ -28,9 +28,7 @@ const State = () => {
     return (
         <div>
             <div className="container">
-                <div className="row justify-content-center">
-                    {!loaded ? <LoaderSkeletonCard lines={20} /> : data && <StateDataCard {...data} />}
-                </div>
+                <div className="row justify-content-center">{!loaded ? <LoaderSkeletonCard lines={20} /> : data && <StateDataCard {...data} />}</div>
             </div>
         </div>
     );
